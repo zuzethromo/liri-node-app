@@ -1,5 +1,6 @@
 let keys = require('./keys.js');
 let spotify = require('spotify');
+let request = require('request');
 
 let getArtistNames = function(artist) {
     return artist.name;
@@ -27,12 +28,37 @@ let getMeSpotify = function(songName) {
     });
 }
 
+let getMeMovie = function(movieName) {
+    request('http://www.omdbapi.com/?t=' + movieName + '&y=&plot=short&r=json', function (error, response, body){
+        if (!error && response.statusCode == 200) {
+            
+            let jsonData = JSON.parse(body);
+            console.log('Title: ' + jsonData.Title);
+            console.log('Year: ' + jsonData.Year);
+            console.log('Rated: ' + jsonData.Rated);
+            console.log('IMDB Rating: ' + jsonData.imdbRating);
+            console.log('Country: ' + jsonData.Country);
+            console.log('Language: ' + jsonData.Language);
+            console.log('Plot: ' + jsonData.Plot);
+            console.log('Actors: ' + jsonData.Actors);
+            console.log('Rotten tomatoes rating: ' + jsonData.tomatoRating);
+            console.log('Rotten tomatoes URL: ' + jsonData.tomatoURL);
+        }
+    });
+}
+
+fs.readFile('random.txt', 'utf8', function (err, data) {
+    if (err) throw err;
+    console.log(data);
+});
 
 let pick = function(caseData, functionData) {
     switch(caseData) {
         case 'spotify-this-song':
             getMeSpotify(functionData);
             break;
+        case 'movie-this' :
+            getMeMovie(functionData);
         default: 
         console.log('LIRI does not know that');
     }
