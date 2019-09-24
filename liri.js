@@ -47,10 +47,20 @@ let getMeMovie = function(movieName) {
     });
 }
 
-fs.readFile('random.txt', 'utf8', function (err, data) {
+let doWhatItSays = function() { 
+    fs.readFile('random.txt', 'utf8', function (err, data) {
     if (err) throw err;
-    console.log(data);
-});
+    
+    let dataArr = data.split(',');
+
+    if (dataArr.length == 2) {
+        pick(dataArr[0], dataArr[1]);
+    }
+    else if (dataArr.length == 1) {
+        pick(dataArr[0]);
+    }
+    });
+}
 
 let pick = function(caseData, functionData) {
     switch(caseData) {
@@ -59,6 +69,9 @@ let pick = function(caseData, functionData) {
             break;
         case 'movie-this' :
             getMeMovie(functionData);
+        case 'do-what-it-says':
+            doWhatItSays();
+            break;
         default: 
         console.log('LIRI does not know that');
     }
