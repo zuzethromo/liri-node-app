@@ -70,6 +70,7 @@ let pick = function(caseData, functionData) {
             break;
         case 'movie-this' :
             getMeMovie(functionData);
+        
         case 'do-what-it-says':
             doWhatItSays();
             break;
