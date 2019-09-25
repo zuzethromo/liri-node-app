@@ -1,3 +1,4 @@
+require("dotenv").config();
 let keys = require('./keys.js');
 let spotify = require('spotify');
 let request = require('request');
