@@ -22,3 +22,11 @@ How to Use:
     -this will venue name, city, etc
     
 ![alt text](images/fourth.png)
+
+
+Built with:
+
+-Javascript
+-Node.js
+-Axios
+-Moment.js
